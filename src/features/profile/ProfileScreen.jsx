@@ -5,25 +5,18 @@
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useAuth } from '../../shared/hooks/useAuth';
-import { useUser } from '../../shared/hooks/useUser';
 import { colors, spacing, typography } from '../../constants/theme';
 
 function ProfileScreen() {
-  const { user } = useAuth();
-  const { profile } = useUser();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
-      {user && (
-        <View style={styles.infoContainer}>
-          <Text style={styles.label}>Name:</Text>
-          <Text style={styles.value}>{user.name || 'N/A'}</Text>
-          <Text style={styles.label}>Email:</Text>
-          <Text style={styles.value}>{user.email || 'N/A'}</Text>
-        </View>
-      )}
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>Name:</Text>
+        <Text style={styles.value}>John Doe</Text>
+        <Text style={styles.label}>Email:</Text>
+        <Text style={styles.value}>john.doe@example.com</Text>
+      </View>
     </View>
   );
 }

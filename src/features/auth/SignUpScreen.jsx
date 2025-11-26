@@ -26,7 +26,6 @@ import SocialLoginButton, {
 } from '../../shared/components/SocialLoginButton';
 import { colors, spacing, typography, borderRadius } from '../../constants/theme';
 import { validation } from '../../utils/validation';
-import { useAuth } from '../../shared/hooks/useAuth';
 
 function SignUpScreen({ navigation }) {
   const [fullName, setFullName] = useState('');
@@ -34,8 +33,7 @@ function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(true);
   const [errors, setErrors] = useState({});
-
-  const { login, loading } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -67,11 +65,12 @@ function SignUpScreen({ navigation }) {
   const handleSignUp = async () => {
     if (!validateForm()) return;
 
-    // TODO: Implement sign up logic
-    const result = await login(email, password);
-    if (result.success) {
+    setLoading(true);
+    // Simulate sign up delay
+    setTimeout(() => {
+      setLoading(false);
       navigation.replace('MainTabs');
-    }
+    }, 1000);
   };
 
   const handleSocialLogin = (provider) => {

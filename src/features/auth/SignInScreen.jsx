@@ -31,15 +31,13 @@ import {
   borderRadius,
 } from '../../constants/theme';
 import { validation } from '../../utils/validation';
-import { useAuth } from '../../shared/hooks/useAuth';
 
 function SignInScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [errors, setErrors] = useState({});
-
-  const { login, loading } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -63,10 +61,12 @@ function SignInScreen({ navigation }) {
   const handleSignIn = async () => {
     if (!validateForm()) return;
 
-    const result = await login(email, password);
-    if (result.success) {
+    setLoading(true);
+    // Simulate login delay
+    setTimeout(() => {
+      setLoading(false);
       navigation.replace('MainTabs');
-    }
+    }, 1000);
   };
 
   const handleSocialLogin = provider => {

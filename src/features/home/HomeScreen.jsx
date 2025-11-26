@@ -5,18 +5,13 @@
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useAuth } from '../../shared/hooks/useAuth';
 import { colors, spacing, typography } from '../../constants/theme';
 
 function HomeScreen() {
-  const { user } = useAuth();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to ManaHRMS</Text>
-      {user && (
-        <Text style={styles.subtitle}>Hello, {user.name || user.email}!</Text>
-      )}
+      <Text style={styles.subtitle}>Hello, User!</Text>
     </View>
   );
 }
